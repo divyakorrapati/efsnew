@@ -55,7 +55,20 @@ def customer_list(request):
     return render(request, 'portfolio/customer_list.html',
                   {'customers': customer})
 
-
+@ login_required
+def customer_new(request):
+    if request.method == "POST" :
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.created_date = timezone.now()
+            customer.save()
+            customers = Customer.objects.filter(created_date__lte=timezone.now())
+            return render(request, 'portfolio/customer_list.html', {'customers': customers})
+    else :
+        form = CustomerForm()
+        # print("Else")
+        return render(request, 'portfolio/customer_new.html', {'form': form})
 @login_required
 def customer_edit(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
@@ -198,7 +211,7 @@ def mutualfund_new(request):
     else :
         form = MutualfundForm()
         # print("Else")
-        return render(request, 'portfolio/mutualfund_new.html', { 'form': form})
+        return render(request, 'portfolio/mutualfund_new.html', {'form': form})
 
 
 @ login_required
@@ -224,7 +237,7 @@ def mutualfund_delete(request, pk):
     mutualfund = get_object_or_404(Mutualfund, pk =pk)
     mutualfund.delete()
     mutualfunds = Mutualfund.objects.filter( purchased_date__lte=timezone.now())
-    return render(request, 'portfolio/mutualfund_list.html', { 'mutualfunds': mutualfunds})
+    return render(request, 'portfolio/mutualfund_list.html', {'mutualfunds': mutualfunds})
 
 
 @login_required
