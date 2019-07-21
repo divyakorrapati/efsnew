@@ -1,0 +1,43 @@
+.page-break {
+			page-break-after: always;
+			page-break-inside: avoid;
+			clear:both;
+		}
+.page-break-before {
+			page-break-before: always;
+			page-break-inside: avoid;
+			clear:both;
+		}
+
+body {
+    padding-left: 15px;
+}
+
+h1 a {
+    color: lightskyblue;
+    font-family: 'cursive';
+
+}
+    ._head {
+    background-color: lightskyblue;
+    color: white;
+    padding: 10px;
+}
+
+._welcome {
+	float: left;
+    clear: none;
+}
+
+._image {
+	float: left;
+	clear: none;
+}
+
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lobster Regular'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v20/neILzCirqoswsqX9zo-mM5Ez.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
